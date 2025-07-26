@@ -1,58 +1,18 @@
 <!DOCTYPE html>
 <html lang="el">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tap Effect</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: sans-serif;
-      transition: background 0.3s;
-    }
-
-    #message {
-      font-size: 2.5em;
-      font-weight: bold;
-      color: white;
-      user-select: none;
-    }
-  </style>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tap Page</title>
+<style>
+  html,body {margin:0; padding:0; width:100%; height:100%; background:black; display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;overflow:hidden;}
+  #msg {font-size:2.5em; color:white; user-select:none;}
+  @keyframes rainbow {0%{color:red;}20%{color:orange;}40%{color:yellow;}60%{color:green;}80%{color:blue;}100%{color:violet;}}
+</style>
 </head>
-<body>
-  <div id="message">tap</div>
-
-  <script>
-    let tapped = false;
-    const message = document.getElementById('message');
-    const body = document.body;
-    const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
-    let colorIndex = 0;
-
-    function startRainbowBackground() {
-      setInterval(() => {
-        body.style.backgroundColor = colors[colorIndex % colors.length];
-        colorIndex++;
-      }, 120); // ταχύτητα αλλαγής χρωμάτων
-    }
-
-    function handleTap() {
-      if (!tapped) {
-        tapped = true;
-        message.innerText = 'Πώς είσαι ρε μεγάλε';
-        startRainbowBackground();
-      }
-    }
-
-    // για tap, κλικ, ή αφή
-    body.addEventListener('click', handleTap);
-    body.addEventListener('touchstart', handleTap);
-  </script>
-</body>
+<body><div id="msg">tap</div>
+<script>
+const m=document.getElementById('msg');
+function go(){m.textContent='Πώς είσαι ρε μεγάλε';m.style.animation='rainbow .6s infinite';document.body.removeEventListener('click',go);document.body.removeEventListener('touchstart',go);}
+document.body.addEventListener('click',go);
+document.body.addEventListener('touchstart',go);
+</script></body>
 </html>
